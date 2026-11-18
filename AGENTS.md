@@ -23,7 +23,7 @@ All repositories are public and default to `main`.
 
 ## Working conventions
 
-- Branch names: `feat/`, `fix/`, `docs/`, `chore/`.
+- Branch names: `feat/`, `fix/`, `docs/`, `chore/`, `refactor/`.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/).
 - Never push directly to `main`. Open a pull request.
 - Every repository has an `AGENTS.md`. Read the local one before editing code
@@ -34,20 +34,25 @@ All repositories are public and default to `main`.
 
 ## Verification before pushing
 
-Each template repository ships the same verification contract. Run all of it and
-confirm it passes before committing:
+The pipeline is defined once, in
+[`.github/workflows/node-ci.yml`](.github/workflows/node-ci.yml), and each template
+calls it from its own `.github/workflows/ci.yml`. Run the same steps locally and
+confirm they pass before committing:
 
 ```bash
 npm ci
 npm run lint
 npm run format:check
-npm run typecheck   # template-mobile also, template-service also
+npm run typecheck
 npm test
-npm run build       # template-web and template-service only
+npm run build       # not in template-mobile
 ```
 
-CI runs the same steps on push and pull request. A red check means the change is
-not done.
+Prettier checks YAML too. Run `npm run format` after editing any `.yml` file, or
+`format:check` fails in CI.
+
+Releases are automated. Do not bump versions or edit changelogs by hand;
+release-please opens a release pull request from Conventional Commits.
 
 ## Known constraints
 
@@ -60,6 +65,12 @@ not done.
 - The `@/` path alias must stay in sync between `tsconfig.json` and the bundler
   config (`vite.config.ts` for web, `babel.config.js` for mobile). Changing one
   without the other breaks either the editor or the build.
+- Dependabot ignores major updates in the templates. Templates pin a known-good
+  stack, and a grouped major bump splits coupled packages (React,
+  React Native, Expo) across the production and development groups, which breaks
+  `npm ci`. Upgrade a major deliberately, in its own pull request.
+- GitHub App tokens cannot enable Pages, change repository settings, manage
+  rulesets, or create repositories and teams. Those need the web UI.
 
 ## Adding a repository
 

@@ -1,0 +1,32 @@
+# Reusable release automation with release-please.
+#
+# Call it from a repository workflow:
+#
+#   jobs:
+#     release:
+#       uses: Iwwwan-labs/.github/.github/workflows/release-please.yml@main
+#
+# It maintains a release pull request that bumps the version and updates the
+# changelog from Conventional Commits. Merging that pull request tags the
+# release and publishes release notes.
+#
+# The caller repository needs release-please-config.json and
+# .release-please-manifest.json at its root.
+
+name: Release
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

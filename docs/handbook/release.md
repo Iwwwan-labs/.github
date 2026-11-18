@@ -17,6 +17,11 @@ The reusable workflow lives in
 [`Iwwwan-labs/.github`](https://github.com/Iwwwan-labs/.github/blob/main/.github/workflows/release-please.yml).
 Repositories call it from `.github/workflows/release.yml`.
 
+The repository must allow Actions to create pull requests
+(**Settings → Actions → General → Workflow permissions**). Without it the workflow
+fails with `GitHub Actions is not permitted to create or approve pull requests`.
+See [`REQUIRED-SETTINGS.md`](../REQUIRED-SETTINGS.md).
+
 ## Version numbers
 
 [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`.

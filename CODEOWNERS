@@ -1,0 +1,21 @@
+# Default code owners for all repositories in the Iwwwan-labs organization.
+#
+# This file is the organization-wide fallback. A repository that defines its own
+# CODEOWNERS file overrides it. Ownership is granted to people or teams here, and
+# owners are requested automatically for review on matching changes.
+#
+# Syntax: <pattern> <owner>...
+# Owners must be users or teams with write access to the repository.
+
+# Everything not matched below.
+*                       @iwwwan-io
+
+# Governance and security-sensitive files.
+/SECURITY.md            @iwwwan-io
+/CODE_OF_CONDUCT.md     @iwwwan-io
+/CODEOWNERS             @iwwwan-io
+
+# Organization profile and shared conventions.
+/profile/               @iwwwan-io
+/docs/                  @iwwwan-io
+/.github/               @iwwwan-io

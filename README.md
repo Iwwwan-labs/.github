@@ -16,6 +16,7 @@ Files in this repository are inherited by every repository in the organization t
 | `CODEOWNERS` | Default reviewers for the organization |
 | `.github/ISSUE_TEMPLATE/` | Default issue forms |
 | `.github/pull_request_template.md` | Default pull request description |
+| `.github/workflows/node-ci.yml` | Reusable Node.js CI (`lint`, `format:check`, `typecheck`, `test`, `build`) |
 | `docs/CONVENTIONS.md` | Repository naming, labels, commits, and release conventions |
 
 ## How these files are used
@@ -27,6 +28,23 @@ GitHub falls back to the files in this repository when a repository has no file 
 - `CODEOWNERS` at the root applies organization-wide.
 
 See the GitHub documentation on [creating a default community health file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file) for details.
+
+## Reusable workflows
+
+`node-ci.yml` is the single source of truth for the Node.js verification pipeline.
+A repository calls it instead of repeating the steps:
+
+```yaml
+jobs:
+  verify:
+    uses: Iwwwan-labs/.github/.github/workflows/node-ci.yml@main
+    with:
+      build: true
+```
+
+It runs `npm ci`, then `lint`, `format:check`, `typecheck`, `test`, and (when
+`build: true`) `build`. The called workflow runs in the caller's repository, so
+it reads that repository's `.nvmrc` and scripts.
 
 ## Contributing
 

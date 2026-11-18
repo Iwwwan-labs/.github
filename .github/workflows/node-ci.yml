@@ -1,0 +1,66 @@
+# Reusable Node.js CI.
+#
+# Call it from a repository workflow:
+#
+#   jobs:
+#     verify:
+#       uses: Iwwwan-labs/.github/.github/workflows/node-ci.yml@main
+#       with:
+#         build: true
+#
+# The called workflow runs in the caller's repository context, so it checks out
+# the caller's code and reads the caller's .nvmrc and package.json scripts.
+
+name: Node CI
+
+on:
+  workflow_call:
+    inputs:
+      node-version-file:
+        description: File holding the Node version to install.
+        type: string
+        required: false
+        default: .nvmrc
+      build:
+        description: Run `npm run build` after tests.
+        type: boolean
+        required: false
+        default: true
+      runs-on:
+        description: Runner label.
+        type: string
+        required: false
+        default: ubuntu-latest
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ${{ inputs.runs-on }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ${{ inputs.node-version-file }}
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        if: ${{ inputs.build }}
+        run: npm run build

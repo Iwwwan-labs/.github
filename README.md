@@ -17,6 +17,7 @@ Files in this repository are inherited by every repository in the organization t
 | `.github/ISSUE_TEMPLATE/` | Default issue forms |
 | `.github/pull_request_template.md` | Default pull request description |
 | `.github/workflows/node-ci.yml` | Reusable Node.js CI (`lint`, `format:check`, `typecheck`, `test`, `build`) |
+| `.github/workflows/release-please.yml` | Reusable release automation (version bump, changelog, tag) |
 | `docs/CONVENTIONS.md` | Repository naming, labels, commits, and release conventions |
 
 ## How these files are used
@@ -45,6 +46,23 @@ jobs:
 It runs `npm ci`, then `lint`, `format:check`, `typecheck`, `test`, and (when
 `build: true`) `build`. The called workflow runs in the caller's repository, so
 it reads that repository's `.nvmrc` and scripts.
+
+`release-please.yml` maintains a release pull request from Conventional Commits.
+A repository calls it on push to `main`:
+
+```yaml
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    uses: Iwwwan-labs/.github/.github/workflows/release-please.yml@main
+```
+
+It needs `release-please-config.json` and `.release-please-manifest.json` at the
+repository root. Merging the release pull request tags the version and publishes
+release notes.
 
 ## Contributing
 

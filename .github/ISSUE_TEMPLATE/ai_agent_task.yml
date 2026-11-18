@@ -1,0 +1,104 @@
+name: AI agent task
+description: A scoped implementation or research task for ChatGPT or OpenHands.
+title: "[Agent]: "
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for work assigned to an AI agent. Do not include secrets.
+        Creating this issue does not authorize merge or deployment.
+  - type: input
+    id: repository
+    attributes:
+      label: Target repository
+      description: Organization/repository, for example Iwwwan-labs/website.
+      placeholder: Iwwwan-labs/repository
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Assigned agent
+      options:
+        - OpenHands
+        - ChatGPT
+        - Human
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 Critical
+        - P1 High
+        - P2 Medium
+        - P3 Low
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: One measurable outcome. Explain why this work is needed.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: List what is included and explicitly excluded.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use observable, verifiable checkboxes where possible.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing and verification
+      description: Required commands, automated tests, manual checks, and expected evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and prohibited changes
+      description: Files, APIs, dependencies, environments, or behaviors that must not change.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and operational considerations
+      description: Security, data migrations, compatibility, rollback, and deployment implications.
+    validations:
+      required: false
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Expected deliverables
+      description: Expected branch, PR, documentation, screenshots, or reports.
+      placeholder: Feature branch and an open PR targeting the default branch.
+    validations:
+      required: true
+  - type: checkboxes
+    id: authority
+    attributes:
+      label: Authority boundaries
+      description: These boundaries apply to every AI agent task.
+      options:
+        - label: Agent may work only within the scope above and on a feature branch.
+          required: true
+        - label: Agent may run checks and open/update a pull request for review.
+          required: true
+        - label: Agent is NOT authorized to merge, release, deploy, run destructive migrations, or modify production data.
+          required: true

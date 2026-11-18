@@ -37,6 +37,7 @@ with AI woven into the way we work.
 | Report a security issue | [SECURITY.md](https://github.com/Iwwwan-labs/.github/blob/main/SECURITY.md) |
 | Get help | [SUPPORT.md](https://github.com/Iwwwan-labs/.github/blob/main/SUPPORT.md) |
 | Follow our conventions | [docs/CONVENTIONS.md](https://github.com/Iwwwan-labs/.github/blob/main/docs/CONVENTIONS.md) |
+| Read the engineering handbook | [docs/handbook/](https://github.com/Iwwwan-labs/.github/blob/main/docs/handbook/README.md) |
 | Start a new project | Use a `template-*` repository |
 
 ## Repository map

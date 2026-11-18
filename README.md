@@ -19,6 +19,7 @@ Files in this repository are inherited by every repository in the organization t
 | `.github/workflows/node-ci.yml` | Reusable Node.js CI (`lint`, `format:check`, `typecheck`, `test`, `build`) |
 | `.github/workflows/release-please.yml` | Reusable release automation (version bump, changelog, tag) |
 | `docs/CONVENTIONS.md` | Repository naming, labels, commits, and release conventions |
+| `docs/handbook/` | Engineering handbook: getting started, development, testing, release, security, operations |
 
 ## How these files are used
 

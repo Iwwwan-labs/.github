@@ -55,7 +55,7 @@ jobs:
       # Release Please generates CHANGELOG.md; keep generated release notes out of source formatting checks.
       - name: Format check
         run: |
-          printf '%s\\n' 'CHANGELOG.md' > "$RUNNER_TEMP/prettierignore"
+          printf '%s\n' 'CHANGELOG.md' > "$RUNNER_TEMP/prettierignore"
           npm run format:check -- --ignore-path "$RUNNER_TEMP/prettierignore"
 
       - name: Typecheck

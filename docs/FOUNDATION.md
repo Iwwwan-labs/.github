@@ -23,8 +23,8 @@ Both tracks use the same engineering standards and delivery controls. Client-spe
 | --- | --- | --- | --- |
 | `.github` | Organization profile, shared community files, conventions, reusable workflows | Public | Exists |
 | `website` | Public organization website | Public | Exists |
-| `template-*` | Reusable project starters | Public | `template-web`, `template-service`, `template-mobile` exist |
-| `clients-*` | Client-specific delivery repositories | Private | Future convention; none confirmed |
+| `template-*` | Reusable project starters copied for new work | Public | `template-web`, `template-service`, `template-mobile` exist |
+| `clients-*` | Client-specific delivery work | Private | Future convention; none confirmed |
 | `internal-*` | Internal tools, automation, and operations | Private | Future convention; none confirmed |
 | Product repositories | Independently operated Iwwwan-labs products | Decide per product | Existing product repositories must be inventoried before migration |
 
@@ -64,7 +64,7 @@ Repository names use lowercase kebab-case. Existing repositories are preserved; 
 
 - [x] Confirm hybrid business model and foundation-first priority.
 - [x] Inventory the current organization repositories.
-- [ ] Validate repository purpose, visibility, metadata, and template flags.
+- [x] Validate repository purpose, visibility, metadata, and template flags (audit snapshot below).
 - [ ] Align organization profile and repository documentation with the actual state.
 - [ ] Standardize issue and pull request intake.
 - [ ] Review CI workflows and required checks for each repository.
@@ -76,7 +76,24 @@ Items that require GitHub organization or repository settings changes are audit-
 
 ## Current repository inventory
 
-The initial audit found five public repositories, each using `main` as its default branch:
+The organization currently exposes five public repositories, each using `main` as its default branch. The following metadata and branch-protection snapshot was checked on 2026-11-21:
+
+| Repository | Declared purpose | Visibility | GitHub template flag | Archived | Issues | `main` protection |
+| --- | --- | --- | --- | --- | --- | --- |
+| `.github` | Organization profile and shared standards | Public | Off | No | On | Off |
+| `website` | Public organization website | Public | Off | No | On | Off |
+| `template-web` | Web project starter | Public | Off | No | On | Off |
+| `template-service` | Service project starter | Public | Off | No | On | Off |
+| `template-mobile` | Mobile project starter | Public | Off | No | On | Off |
+
+**Audit findings:**
+
+- All three `template-*` repositories are named as reusable starters, but GitHub's `is_template` setting is currently disabled. Enabling it is a repository-setting change and requires explicit approval.
+- Branch protection is currently disabled on all five `main` branches. No protection settings were changed during this audit.
+- All five repositories are public, use `main`, are not archived, and have Issues enabled.
+- This is a point-in-time snapshot. Recheck before applying settings or making operational decisions.
+
+The initial inventory found five public repositories:
 
 - `.github`
 - `website`
@@ -84,7 +101,7 @@ The initial audit found five public repositories, each using `main` as its defau
 - `template-service`
 - `template-mobile`
 
-This inventory is a point-in-time snapshot. Update it when repositories are created, transferred, archived, or change visibility.
+Update this inventory when repositories are created, transferred, archived, or change visibility.
 
 ## Decision log
 

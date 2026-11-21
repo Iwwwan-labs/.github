@@ -2,10 +2,9 @@
 
 # Iwwwan-labs
 
-**AI-Powered Digital Product & Software Engineering Agency**
+**Software Engineering Agency & Product Studio**
 
-We design, build, and ship digital products — web, mobile, and backend —
-with AI woven into the way we work.
+We design, build, and operate digital products — combining client engineering services with products developed and owned by Iwwwan-labs. AI-assisted workflows support delivery across web, mobile, backend, and automation.
 
 📍 Indonesia
 
@@ -15,47 +14,39 @@ with AI woven into the way we work.
 
 ## What we do
 
-| Service | What it covers |
+| Track | What it covers |
 | --- | --- |
-| **Product engineering** | Web and mobile applications, from discovery to release |
-| **Platform & backend** | APIs, services, data, and infrastructure |
-| **AI enablement** | Agentic workflows, automation, and LLM integrations |
-| **Design** | UX/UI, design systems, and prototyping |
+| **Agency services** | Product discovery, UX/UI, web and mobile engineering, backend, integrations, and automation for clients |
+| **Product studio** | Research, build, launch, and operation of our own digital products |
+| **AI engineering** | Agent-assisted software delivery, workflow automation, and LLM integrations |
+| **Platform engineering** | Reusable templates, shared tooling, CI/CD, and engineering standards |
 
 ## How we work
 
-- **Ship small, ship often.** Small pull requests, reviewed before merge.
-- **Standards over improvisation.** Every repository starts from a template and follows a shared convention.
-- **Automate the boring parts.** CI, reviews, and releases are automated by default.
-- **Secure by default.** Least privilege, secret scanning, and branch protection everywhere.
-
-## Getting started
-
-| I want to... | Read |
-| --- | --- |
-| Contribute to a repository | [CONTRIBUTING.md](https://github.com/Iwwwan-labs/.github/blob/main/CONTRIBUTING.md) |
-| Report a security issue | [SECURITY.md](https://github.com/Iwwwan-labs/.github/blob/main/SECURITY.md) |
-| Get help | [SUPPORT.md](https://github.com/Iwwwan-labs/.github/blob/main/SUPPORT.md) |
-| Follow our conventions | [docs/CONVENTIONS.md](https://github.com/Iwwwan-labs/.github/blob/main/docs/CONVENTIONS.md) |
-| Read the engineering handbook | [docs/handbook/](https://github.com/Iwwwan-labs/.github/blob/main/docs/handbook/README.md) |
-| Start a new project | Use a `template-*` repository |
+- **One engineering system.** Client engagements and owned products follow shared quality and security standards.
+- **Small, reviewable changes.** Work moves through issues, feature branches, checks, and pull requests.
+- **Human approval at critical gates.** AI agents can prepare and propose changes; merge, deployment, and security-sensitive changes require explicit approval.
+- **Secure separation.** Client work, credentials, and internal operations remain isolated.
 
 ## Repository map
 
-| Repository | Purpose | Visibility |
+| Repository | Purpose | Current visibility |
 | --- | --- | --- |
-| [`.github`](https://github.com/Iwwwan-labs/.github) | Organization profile, health files, and conventions | Public |
-| `website` | Agency landing page | Public |
-| `docs` | Engineering handbook and internal documentation | Private |
-| `template-web` | Starter for web applications | Public |
-| `template-service` | Starter for backend services and APIs | Public |
-| `template-mobile` | Starter for mobile applications | Public |
-| `clients-*` | Per-client delivery repositories | Private |
-| `internal-*` | Internal tools and automation | Private |
+| [`.github`](https://github.com/Iwwwan-labs/.github) | Organization profile, shared conventions, and engineering handbook | Public |
+| [`website`](https://github.com/Iwwwan-labs/website) | Public organization website | Public |
+| [`template-web`](https://github.com/Iwwwan-labs/template-web) | Web application starter | Public |
+| [`template-service`](https://github.com/Iwwwan-labs/template-service) | Backend service starter | Public |
+| [`template-mobile`](https://github.com/Iwwwan-labs/template-mobile) | Mobile application starter | Public |
 
-## Contact
+## Start here
 
-- **General enquiries:** see [SUPPORT.md](https://github.com/Iwwwan-labs/.github/blob/main/SUPPORT.md)
-- **Security reports:** see [SECURITY.md](https://github.com/Iwwwan-labs/.github/blob/main/SECURITY.md)
+- [Organization foundation](https://github.com/Iwwwan-labs/.github/blob/main/docs/FOUNDATION.md)
+- [Contributing](https://github.com/Iwwwan-labs/.github/blob/main/CONTRIBUTING.md)
+- [Security policy](https://github.com/Iwwwan-labs/.github/blob/main/SECURITY.md)
+- [Engineering conventions](https://github.com/Iwwwan-labs/.github/blob/main/docs/CONVENTIONS.md)
+- [Engineering handbook](https://github.com/Iwwwan-labs/.github/tree/main/docs/handbook)
+- [Support](https://github.com/Iwwwan-labs/.github/blob/main/SUPPORT.md)
 
-<sub>© Iwwwan-labs. Licensed under the MIT License.</sub>
+---
+
+<sub>© Iwwwan-labs</sub>

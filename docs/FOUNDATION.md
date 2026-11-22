@@ -35,7 +35,8 @@ Repository names use lowercase kebab-case. Existing repositories are preserved; 
 - **Private by default for sensitive work.** Client work, internal operations, credentials, and non-public product plans belong in private repositories.
 - **Least privilege.** Give people and automations only the access needed for their task.
 - **Pull requests as the change boundary.** Work on feature branches, run checks, review diffs, then merge.
-- **Human approval for consequential actions.** AI agents may inspect issues, implement scoped changes, run checks, push feature branches, and open pull requests. They must not merge, deploy, change repository/org security settings, permissions, or secrets without explicit approval.
+- **Single-maintainer governance.** `iwwwan-io` is currently the sole human maintainer. Rulesets do not require PR approval or Code Owner review because a second independent reviewer is not available.
+- **Human control of consequential actions.** AI agents may inspect issues, implement scoped changes, run checks, push feature branches, and open pull requests. They must not merge, deploy, change repository/org security settings, permissions, or secrets without explicit approval from `iwwwan-io`.
 - **Traceability.** Work should link to an issue, pull request, decision record, or release.
 - **Separation of duties.** Client assets and secrets must not be copied into shared templates, public repositories, logs, or unrelated projects.
 - **Small reversible changes.** Prefer incremental pull requests over broad, hard-to-review changes.
@@ -47,8 +48,8 @@ Repository names use lowercase kebab-case. Existing repositories are preserved; 
 3. Assign an engineer or agent with minimum required access.
 4. Implement on a dedicated branch and run relevant checks.
 5. Open a pull request with test evidence and linked issue.
-6. Review the diff and CI results.
-7. Obtain explicit human approval before merge; obtain separate approval before deployment where applicable.
+6. The maintainer reviews the diff, scope, and required CI/security check results.
+7. The maintainer explicitly decides whether to merge. Deployment requires a separate explicit approval.
 8. Record release and operational follow-up.
 
 ## Initial organization workstreams
@@ -64,44 +65,36 @@ Repository names use lowercase kebab-case. Existing repositories are preserved; 
 
 - [x] Confirm hybrid business model and foundation-first priority.
 - [x] Inventory the current organization repositories.
-- [x] Validate repository purpose, visibility, metadata, and template flags (audit snapshot below).
-- [ ] Align organization profile and repository documentation with the actual state.
+- [x] Validate repository purpose, visibility, metadata, and template flags.
+- [x] Establish active main-branch rulesets on all five repositories.
+- [x] Configure required CI and CodeQL checks on the three templates and required website static checks.
+- [x] Configure Dependabot and push-protection controls on the repositories, based on maintainer confirmation; feature availability and secret-scanning status still require a separate verified inventory.
+- [x] Document single-maintainer governance and AI-agent approval boundaries.
 - [ ] Standardize issue and pull request intake.
-- [ ] Review CI workflows and required checks for each repository.
-- [ ] Review access, branch protection, secret scanning, dependency security, and vulnerability reporting settings.
-- [ ] Document agent permissions and human approval gates.
+- [ ] Complete the security-settings evidence inventory, including secret scanning and alert status where API/UI evidence is available.
 - [ ] Establish a single organization-level project/operations view.
 
-Items that require GitHub organization or repository settings changes are audit-only until explicitly approved and applied.
+Settings that require GitHub organization or repository changes remain subject to explicit maintainer approval.
 
 ## Current repository inventory
 
-The organization currently exposes five public repositories, each using `main` as its default branch. The following metadata and branch-protection snapshot was checked on 2026-11-21:
+The organization currently has five public repositories, all using `main` as the default branch, not archived, and with Issues enabled. The following snapshot was checked on 2026-11-22.
 
-| Repository | Declared purpose | Visibility | GitHub template flag | Archived | Issues | `main` protection |
-| --- | --- | --- | --- | --- | --- | --- |
-| `.github` | Organization profile and shared standards | Public | Off | No | On | Off |
-| `website` | Public organization website | Public | Off | No | On | Off |
-| `template-web` | Web project starter | Public | Off | No | On | Off |
-| `template-service` | Service project starter | Public | Off | No | On | Off |
-| `template-mobile` | Mobile project starter | Public | Off | No | On | Off |
+| Repository | Purpose | GitHub template flag | Active main ruleset | Required status checks |
+| --- | --- | --- | --- | --- |
+| `.github` | Organization profile and shared standards | Off | Yes | None configured |
+| `website` | Public organization website | Off | Yes | `Static website checks` |
+| `template-web` | Web project starter | On | Yes | `verify / verify`, `analyze / Analyze JavaScript and TypeScript` |
+| `template-service` | Service project starter | On | Yes | `verify / verify`, `analyze / Analyze JavaScript and TypeScript` |
+| `template-mobile` | Mobile project starter | On | Yes | `verify / verify`, `analyze / Analyze JavaScript and TypeScript` |
 
-**Audit findings:**
+All five active rulesets block branch deletion and non-fast-forward updates. All five use zero required approving reviews, consistent with the current single-maintainer model. Required status checks are enforced on the website and three templates; `.github` currently has no required status check configured.
 
-- All three `template-*` repositories are named as reusable starters, but GitHub's `is_template` setting is currently disabled. Enabling it is a repository-setting change and requires explicit approval.
-- Branch protection is currently disabled on all five `main` branches. No protection settings were changed during this audit.
-- All five repositories are public, use `main`, are not archived, and have Issues enabled.
-- This is a point-in-time snapshot. Recheck before applying settings or making operational decisions.
+The three template repositories have GitHub Template mode enabled. Their CI, CodeQL, and Release workflows have completed successfully on their latest checked `main` commits during this audit.
 
-The initial inventory found five public repositories:
+Security controls such as Dependency Graph, Dependabot alerts/security updates, and push protection were applied by the maintainer through GitHub settings. The connector used for this audit cannot independently verify all of those security-setting states. Secret scanning availability and activation must not be assumed from push protection alone.
 
-- `.github`
-- `website`
-- `template-web`
-- `template-service`
-- `template-mobile`
-
-Update this inventory when repositories are created, transferred, archived, or change visibility.
+Update this inventory when repositories are created, transferred, archived, or change visibility. Recheck live settings before making operational decisions.
 
 ## Decision log
 
@@ -111,6 +104,8 @@ Update this inventory when repositories are created, transferred, archived, or c
 | Business model | Hybrid: agency services + product studio |
 | First priority | Foundation |
 | Existing repositories | Preserve; no bulk migration or renaming |
+| Maintainer model | Single human maintainer: `iwwwan-io` |
 | AI agent changes | Feature branch and pull request workflow |
-| Merge and deployment | Explicit human approval required |
+| Merge | Explicit maintainer decision; no required second-person approval |
+| Deployment | Separate explicit maintainer approval required |
 | Security, permissions, and secrets | No changes without explicit approval |
